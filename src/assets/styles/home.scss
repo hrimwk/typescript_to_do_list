@@ -1,0 +1,23 @@
+.title {
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.add {
+  display: block;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+}
+.check-box:checked + label {
+  color: #666;
+  text-decoration: line-through;
+}
+.delete {
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
