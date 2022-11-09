@@ -1,54 +1,56 @@
 import React, { useState } from 'react';
-import { Value } from 'sass';
 import '../assets/styles/home.scss';
+import EditRemove from '../components/EditRemove';
 
 function Home() {
   interface List {
     id: number;
     value: string;
+    checked?: boolean;
   }
-  const [lists, setList] = useState<List[] | null>([]);
+  const [lists, setList] = useState<List[]>([]);
   const [todoInput, setInput] = useState<string>('');
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
-  const deleteList = (e: React.MouseEvent<HTMLSpanElement>) => {
-    console.log('?', e.currentTarget.id);
-    setList(lists.filter((todo) => todo.id.toString() !== e.currentTarget.id));
-  };
+
   const addList = () => {
-    let newList = lists.map((data, idx) => {
-      return { id: idx, value: data.value };
-    });
-    setList([...newList, { id: newList.length, value: todoInput }]);
+    setList([
+      ...lists,
+      { id: lists.length === 0 ? 0 : lists[lists.length - 1].id + 1, value: todoInput, checked: false },
+    ]);
     setInput('');
   };
+
   return (
     <div className="container">
-      <h1 className="title">TO DO LIST</h1>
-      <section className="list-container">
-        <div className="list">
-          <ul>
-            {lists.map((data) => {
-              return (
-                <li className="d-flex" key={data.id}>
-                  <input type="checkbox" className="check-box" />
-                  <label className="mr50">{data.value}</label>
-                  <span className="delete" onClick={deleteList} id={`${data.id}`}>
-                    삭제
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-      <section className="add-container d-flex">
-        <input className="add-content" onChange={inputChange} value={todoInput} />
-        <span className="add" onClick={addList}>
-          +
-        </span>
-      </section>
+      <div className="wrap">
+        <h1 className="title">TO DO LIST</h1>
+        <section className="add-container flex-between">
+          <input className="add-content" onChange={inputChange} value={todoInput} />
+          <span className="add" onClick={addList}>
+            추가
+          </span>
+        </section>
+        <section className="list-container">
+          <div className="list">
+            <ul>
+              {lists.map((data) => {
+                return (
+                  <EditRemove
+                    lists={lists}
+                    dataValue={data.value}
+                    setList={setList}
+                    dataId={data.id}
+                    listsCheck={lists.length > 0 && data.checked}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
