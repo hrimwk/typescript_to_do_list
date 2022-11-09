@@ -1,20 +1,20 @@
 import { useState } from 'react';
 interface List {
   id: number;
-  value: string | null;
-  checked?: boolean;
+  value: string;
+  checked: boolean;
 }
 
 interface propsType {
   lists: List[];
-  setList: (data: List[]) => List[];
+  setList: (data: List[]) => void;
   dataId: number;
   dataValue: string;
   listsCheck: boolean;
 }
 function EditRemove({ lists, setList, dataId, dataValue, listsCheck }: propsType) {
   const [edit, setEdit] = useState<boolean>(false);
-  const [newList, setNewList] = useState<string | null>(null);
+  const [newList, setNewList] = useState<string>('');
   const editList = () => {
     if (edit) {
       const changedList = { id: dataId, value: newList, checked: listsCheck };

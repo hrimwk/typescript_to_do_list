@@ -6,7 +6,7 @@ function Home() {
   interface List {
     id: number;
     value: string;
-    checked?: boolean;
+    checked: boolean;
   }
   const [lists, setList] = useState<List[]>([]);
   const [todoInput, setInput] = useState<string>('');
@@ -36,17 +36,19 @@ function Home() {
         <section className="list-container">
           <div className="list">
             <ul>
-              {lists.map((data) => {
-                return (
-                  <EditRemove
-                    lists={lists}
-                    dataValue={data.value}
-                    setList={setList}
-                    dataId={data.id}
-                    listsCheck={lists.length > 0 && data.checked}
-                  />
-                );
-              })}
+              {lists.length > 0 &&
+                lists.map((data) => {
+                  return (
+                    <EditRemove
+                      key={data.id}
+                      lists={lists}
+                      dataValue={data.value}
+                      setList={setList}
+                      dataId={data.id}
+                      listsCheck={data.checked}
+                    />
+                  );
+                })}
             </ul>
           </div>
         </section>
