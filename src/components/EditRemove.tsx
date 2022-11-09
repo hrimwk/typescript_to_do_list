@@ -27,7 +27,6 @@ function EditRemove({ lists, setList, dataId, dataValue, listsCheck }: propsType
 
   const deleteList = (e: React.MouseEvent<HTMLSpanElement>) => {
     setList(lists.filter((todo: { id: { toString: () => string } }) => todo.id.toString() !== e.currentTarget.id));
-    console.log('???', listsCheck);
   };
   const changeCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newCheck = lists.map((data) => ({
