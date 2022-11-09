@@ -41,12 +41,18 @@ function EditRemove({ lists, setList, dataId, dataValue, listsCheck }: propsType
   };
 
   return (
-    <li className="flex-between mb10">
+    <li className="flex-between-center mb10">
       {edit ? (
         <input type="text" defaultValue={dataValue} onChange={changeInput} />
       ) : (
         <div>
-          <input type="checkbox" className="check-box" onChange={changeCheck} checked={listsCheck} name={`${dataId}`} />
+          <input
+            type="checkbox"
+            className="check-box mr10"
+            onChange={changeCheck}
+            checked={listsCheck}
+            name={`${dataId}`}
+          />
           <label className="mr50">{dataValue}</label>
         </div>
       )}

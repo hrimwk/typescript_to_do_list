@@ -28,7 +28,7 @@ function Home() {
       <div className="wrap">
         <h1 className="title">TO DO LIST</h1>
         <section className="add-container flex-between">
-          <input className="add-content" onChange={inputChange} value={todoInput} />
+          <input className="add-content" onChange={inputChange} value={todoInput} type="text" />
           <span className="add" onClick={addList}>
             추가
           </span>

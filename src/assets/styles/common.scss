@@ -5,7 +5,16 @@
   display: flex;
   justify-content: space-between;
 }
-
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+input[type='text'] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
 .mt10 {
   margin-top: 10px;
 }
