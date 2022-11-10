@@ -10,9 +10,11 @@ function Home() {
   }
   const [lists, setList] = useState<List[]>([]);
   const [todoInput, setInput] = useState<string>('');
+  const [buttonDisable, setDisable] = useState<boolean>(true);
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
+    e.target.value.length === 0 ? setDisable(true) : setDisable(false);
   };
 
   const addList = () => {
@@ -29,9 +31,9 @@ function Home() {
         <h1 className="title">TO DO LIST</h1>
         <section className="add-container flex-between">
           <input className="add-content" onChange={inputChange} value={todoInput} type="text" />
-          <span className="add" onClick={addList}>
+          <button className="add" onClick={addList} disabled={buttonDisable}>
             추가
-          </span>
+          </button>
         </section>
         <section className="list-container">
           <div className="list">
