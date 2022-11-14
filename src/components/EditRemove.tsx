@@ -21,7 +21,6 @@ function EditRemove({ lists, setList, dataId, dataValue, listsCheck }: propsType
       const newLists = lists.filter((list: { id: number }) => list.id !== dataId);
       setList([...newLists, changedList].sort((f, s) => f.id - s.id));
     }
-
     setEdit(!edit);
   };
 

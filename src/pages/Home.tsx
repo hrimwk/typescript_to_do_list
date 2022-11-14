@@ -29,11 +29,13 @@ function Home() {
     <div className="container">
       <div className="wrap">
         <h1 className="title">TO DO LIST</h1>
-        <section className="add-container flex-between">
-          <input className="add-content" onChange={inputChange} value={todoInput} type="text" />
-          <button className="add" onClick={addList} disabled={buttonDisable}>
-            추가
-          </button>
+        <section>
+          <form className="add-container flex-between" onSubmit={(e) => e.preventDefault()}>
+            <input className="add-content" onChange={inputChange} value={todoInput} type="text" />
+            <button className="add" onClick={addList} disabled={buttonDisable}>
+              추가
+            </button>
+          </form>
         </section>
         <section className="list-container">
           <div className="list">
