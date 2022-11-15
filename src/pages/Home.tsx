@@ -31,7 +31,13 @@ function Home() {
         <h1 className="title">TO DO LIST</h1>
         <section>
           <form className="add-container flex-between" onSubmit={(e) => e.preventDefault()}>
-            <input className="add-content" onChange={inputChange} value={todoInput} type="text" />
+            <input
+              className="add-content"
+              onChange={inputChange}
+              value={todoInput}
+              type="text"
+              aria-label="add-content"
+            />
             <button className="add" onClick={addList} disabled={buttonDisable}>
               추가
             </button>
