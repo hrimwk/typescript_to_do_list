@@ -32,6 +32,7 @@ function Home() {
         <section>
           <form className="add-container flex-between" onSubmit={(e) => e.preventDefault()}>
             <input
+              placeholder="할 일을 추가해주세요."
               className="add-content"
               onChange={inputChange}
               value={todoInput}
