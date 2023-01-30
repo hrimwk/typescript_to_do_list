@@ -4,7 +4,7 @@
 ## 프로젝트 소개
 
 ```
-typescript 학습을 위해 진행한 to do list 웹 미니 프로젝트입니다.
+typescript 및 redux 학습을 위해 진행한 to do list 웹 미니 프로젝트입니다.
 ```
 
 ### 개발 기간 
@@ -22,5 +22,6 @@ typescript 학습을 위해 진행한 to do list 웹 미니 프로젝트입니�
 ```
 React
 typescript 
+redux
 sass
 ```
