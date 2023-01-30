@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { TodoList } from '../redux/reducer';
 import '../assets/styles/home.scss';
 import EditRemove from '../components/EditRemove';
+import { addTodo } from '../redux/actions';
 
 function Home() {
-  interface List {
-    id: number;
-    value: string;
-    checked: boolean;
-  }
-  const [lists, setList] = useState<List[]>([]);
   const [todoInput, setInput] = useState<string>('');
   const [buttonDisable, setDisable] = useState<boolean>(true);
+  const dispatch = useDispatch();
+  const lists = useSelector((state: TodoList[]) => state);
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -18,10 +18,7 @@ function Home() {
   };
 
   const addList = () => {
-    setList([
-      ...lists,
-      { id: lists.length === 0 ? 0 : lists[lists.length - 1].id + 1, value: todoInput, checked: false },
-    ]);
+    dispatch(addTodo(todoInput));
     setInput('');
   };
 
@@ -49,16 +46,7 @@ function Home() {
             <ul>
               {lists.length > 0 &&
                 lists.map((data) => {
-                  return (
-                    <EditRemove
-                      key={data.id}
-                      lists={lists}
-                      dataValue={data.value}
-                      setList={setList}
-                      dataId={data.id}
-                      listsCheck={data.checked}
-                    />
-                  );
+                  return <EditRemove key={data.id} listsCheck={data.checked} dataId={data.id} dataValue={data.value} />;
                 })}
             </ul>
           </div>

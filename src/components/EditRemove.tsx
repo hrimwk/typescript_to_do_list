@@ -1,38 +1,32 @@
 import { useState } from 'react';
-interface List {
-  id: number;
-  value: string;
-  checked: boolean;
-}
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { TodoList } from '../redux/reducer';
+import { checkTodo, deleteTodo, editTodo } from '../redux/actions';
 
 interface propsType {
-  lists: List[];
-  setList: (data: List[]) => void;
   dataId: number;
   dataValue: string;
   listsCheck: boolean;
 }
-function EditRemove({ lists, setList, dataId, dataValue, listsCheck }: propsType) {
+function EditRemove({ dataId, dataValue, listsCheck }: propsType) {
   const [edit, setEdit] = useState<boolean>(false);
   const [newList, setNewList] = useState<string>('');
+  const dispatch = useDispatch();
+
   const editList = () => {
     if (edit) {
-      const changedList = { id: dataId, value: newList, checked: listsCheck };
-      const newLists = lists.filter((list: { id: number }) => list.id !== dataId);
-      setList([...newLists, changedList].sort((f, s) => f.id - s.id));
+      dispatch(editTodo(dataId, newList, listsCheck));
     }
     setEdit(!edit);
   };
 
   const deleteList = (e: React.MouseEvent<HTMLSpanElement>) => {
-    setList(lists.filter((todo: { id: { toString: () => string } }) => todo.id.toString() !== e.currentTarget.id));
+    dispatch(deleteTodo(e.currentTarget.id));
   };
+
   const changeCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newCheck = lists.map((data) => ({
-      ...data,
-      checked: data.id.toString() === e.currentTarget.name ? !data.checked : data.checked,
-    }));
-    setList(newCheck);
+    dispatch(checkTodo(e.currentTarget.name));
   };
 
   const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
