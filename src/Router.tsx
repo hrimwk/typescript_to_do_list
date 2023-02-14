@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import './assets/styles/common.scss';
 import './assets/styles/reset.scss';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store } from './reduxToolkit/store';
 
 function Router() {
   return (

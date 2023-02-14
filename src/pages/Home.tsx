@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { TodoList } from '../redux/reducer';
+
 import '../assets/styles/home.scss';
 import EditRemove from '../components/EditRemove';
-import { addTodo } from '../redux/actions';
+import { addTodo } from '../reduxToolkit/todoSlice';
+import { TodoList } from '../reduxToolkit/todoSlice';
+
+export interface Todos {
+  todo: TodoList[];
+}
 
 function Home() {
   const [todoInput, setInput] = useState<string>('');
   const [buttonDisable, setDisable] = useState<boolean>(true);
   const dispatch = useDispatch();
-  const lists = useSelector((state: TodoList[]) => state);
+  const lists = useSelector((state: Todos) => state.todo);
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);

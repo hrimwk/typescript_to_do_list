@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { TodoList } from '../redux/reducer';
-import { checkTodo, deleteTodo, editTodo } from '../redux/actions';
+import { checkTodo, deleteTodo, editTodo } from '../reduxToolkit/todoSlice';
 
 interface propsType {
   dataId: number;
@@ -11,12 +9,12 @@ interface propsType {
 }
 function EditRemove({ dataId, dataValue, listsCheck }: propsType) {
   const [edit, setEdit] = useState<boolean>(false);
-  const [newList, setNewList] = useState<string>('');
+  const [newList, setNewList] = useState<string>(dataValue);
   const dispatch = useDispatch();
 
   const editList = () => {
     if (edit) {
-      dispatch(editTodo(dataId, newList, listsCheck));
+      dispatch(editTodo({ dataId, newList, listsCheck }));
     }
     setEdit(!edit);
   };
