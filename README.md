@@ -22,6 +22,7 @@ typescript 및 redux 학습을 위해 진행한 to do list 웹 미니 프로젝�
 ```
 React
 typescript 
-redux
+Redux
+Redux Toolkit
 sass
 ```
